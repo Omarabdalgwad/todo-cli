@@ -11,6 +11,6 @@ A lightweight command-line Todo manager built with **Typer** and **Rich**.
 ## PyPI Badge
 ![PyPI](https://img.shields.io/pypi/v/omar1324-todo-cli)
 ## Installation
-
+[![Install via pip](https://img.shields.io/badge/pip-install-brightgreen)](https://pypi.org/project/omar1324-todo-cli/)
 ```bash
 pip install omar1324-todo-cli
