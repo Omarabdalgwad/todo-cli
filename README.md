@@ -1,6 +1,6 @@
 # Todo CLI
 
-A lightweight command-line Todo manager built with *Typer* and *Rich*.
+A lightweight command-line Todo manager built with *Typer* and *Rich*
 
 ## Features
 
@@ -11,9 +11,10 @@ A lightweight command-line Todo manager built with *Typer* and *Rich*.
 ## PyPI Badge
 [![PyPI](https://img.shields.io/pypi/v/omar1324-todo-cli)](https://pypi.org/project/omar1324-todo-cli/)
 
-How to use it 
-1-install python >=3.9 https://www.python.org/downloads/
 
+## How to use it 
+
+1-install python >=3.9 https://www.python.org/downloads/
 
 2- open your terminal and run this 
 [![Install via pip](https://img.shields.io/badge/pip-install-brightgreen)](https://pypi.org/project/omar1324-todo-cli/)
@@ -29,6 +30,7 @@ pip install omar1324-todo-cli
 Successfully installed omar1324-todo-cli-1.1.2
 
 ```
+----
 
 ## commands :
 
@@ -96,6 +98,7 @@ todo add "task5" "else"
 
 ![Screenshot](![Screenshot](https://raw.githubusercontent.com/Omarabdalgwad/Todo-list-cli/main/assets/Screenshot%202025-11-25%20151858.png))
 
+---
 
 3- (complete)
 to insure that you have done this task
@@ -147,6 +150,7 @@ todo complete 5
 ```
 ![Screenshot](https://github.com/Omarabdalgwad/Todo-list-cli/blob/main/assets/Screenshot%202025-11-25%20152658.png)
 
+---
 
 4-(delete)
 
