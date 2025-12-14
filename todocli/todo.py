@@ -2,11 +2,48 @@ import typer
 from rich.console import Console
 from rich.table import Table
 from .model import Todo
-from .database import get_all_todos, delete_todo, insert_todo, complete_todo, update_todo
+from .database import (
+    get_all_todos,
+    delete_todo,
+    insert_todo,
+    complete_todo,
+    update_todo,
+    is_valid_position,
+    get_todo_count,
+)
 
 console = Console()
 
 app = typer.Typer()
+
+
+def validate_position(position: int) -> bool:
+    """
+    Validate that a position is valid (exists in the todo list).
+
+    Args:
+        position: The 1-indexed position provided by the user.
+
+    Returns:
+        True if valid, raises typer.Exit if invalid.
+    """
+    total_count = get_todo_count()
+
+    if total_count == 0:
+        console.print("[bold red]Error:[/bold red] No todos exist. Add a todo first using 'add'.")
+        raise typer.Exit(code=1)
+
+    if position < 1:
+        console.print(f"[bold red]Error:[/bold red] Position must be a positive number (1 or greater).")
+        console.print(f"[yellow]Hint:[/yellow] Valid positions are 1 to {total_count}.")
+        raise typer.Exit(code=1)
+
+    if position > total_count:
+        console.print(f"[bold red]Error:[/bold red] Position {position} does not exist.")
+        console.print(f"[yellow]Hint:[/yellow] You only have {total_count} todo(s). Valid positions are 1 to {total_count}.")
+        raise typer.Exit(code=1)
+
+    return True
 
 
 @app.command(short_help='adds an item')
@@ -15,27 +52,29 @@ def add(task: str, category: str):
     todo = Todo(task, category)
     insert_todo(todo)
     show()
-    
-    
+
+
 @app.command()
 def delete(position: int):
+    validate_position(position)
     typer.echo(f"deleting {position}")
-    delete_todo(position-1)
+    delete_todo(position - 1)
     show()
-    
-    
-    
+
+
 @app.command()
 def update(position: int, task: str = None, category: str = None):
+    validate_position(position)
     typer.echo(f"updating {position}")
-    update_todo(position-1,task,category)
+    update_todo(position - 1, task, category)
     show()
-    
-    
+
+
 @app.command()
-def complete(position: int,):
+def complete(position: int):
+    validate_position(position)
     typer.echo(f"complete {position}")
-    complete_todo(position-1)
+    complete_todo(position - 1)
     show()
     
 @app.command()
