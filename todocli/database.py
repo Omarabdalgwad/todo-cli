@@ -52,7 +52,29 @@ def get_all_todos() -> List[Todo]:
     for row in rows:
         todos.append(Todo(*row))
 
-    return todos   
+    return todos
+
+
+def get_todo_count() -> int:
+    """Returns the total number of todos in the database."""
+    c.execute("SELECT COUNT(*) FROM todos")
+    return c.fetchone()[0]
+
+
+def is_valid_position(position: int) -> bool:
+    """
+    Check if a position is valid (exists in the database).
+
+    Args:
+        position: The 0-indexed position to check.
+
+    Returns:
+        True if the position exists, False otherwise.
+    """
+    if position < 0:
+        return False
+    count = get_todo_count()
+    return position < count   
 
 
 def delete_todo(position: int):
